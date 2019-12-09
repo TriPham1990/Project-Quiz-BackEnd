@@ -7,8 +7,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import tri.lo.model.KindOfQuestion;
-import tri.lo.service.KindOfQuestionService;
+import tri.lo.model.quiz.KindOfQuestion;
+import tri.lo.service.quiz.KindOfQuestionService;
 
 import java.util.List;
 import java.util.Optional;

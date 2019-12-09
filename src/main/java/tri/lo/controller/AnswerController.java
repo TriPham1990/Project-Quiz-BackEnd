@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import tri.lo.model.Answer;
-import tri.lo.service.AnswerService;
+import tri.lo.model.quiz.Answer;
+import tri.lo.service.quiz.AnswerService;
 
 import java.util.List;
 
