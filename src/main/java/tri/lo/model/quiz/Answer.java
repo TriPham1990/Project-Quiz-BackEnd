@@ -3,31 +3,31 @@ package tri.lo.model.quiz;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
 @Entity
+@Table(name = "answers")
 public class Answer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Min(0)
-    @Max(1)
-    private int correct;
+    @NotBlank
+    private boolean correct;
 
+    @NotBlank
     private String answer;
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "question")
+    @JoinColumn(name = "questions")
     private Question question;
 
     public Answer() {
     }
 
-    public Answer(@Min(0) @Max(1) int correct, String answer) {
+    public Answer(boolean correct, String answer) {
         this.correct = correct;
         this.answer = answer;
     }
@@ -40,11 +40,11 @@ public class Answer {
         this.id = id;
     }
 
-    public int getCorrect() {
+    public boolean getCorrect() {
         return correct;
     }
 
-    public void setCorrect(int correct) {
+    public void setCorrect(boolean correct) {
         this.correct = correct;
     }
 

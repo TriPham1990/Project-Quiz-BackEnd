@@ -3,26 +3,32 @@ package tri.lo.model.quiz;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
+@Table(name = "kindOfQuestions")
 public class KindOfQuestion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String kindOfQuestion;
+    @NotBlank
+    private String kindOfQuestions;
 
-    @JsonBackReference
-    @OneToMany(targetEntity = Question.class)
-    private List<Question> questions;
+    @Min(1)
+    @Max(2)
+    private int classify;
 
     public KindOfQuestion() {
     }
 
-    public KindOfQuestion(String kindOfQuestion) {
-        this.kindOfQuestion = kindOfQuestion;
+    public KindOfQuestion(String kindOfQuestions, int classify) {
+        this.kindOfQuestions = kindOfQuestions;
+        this.classify = classify;
     }
 
     public Long getId() {
@@ -33,19 +39,19 @@ public class KindOfQuestion {
         this.id = id;
     }
 
-    public String getKindOfQuestion() {
-        return kindOfQuestion;
+    public String getKindOfQuestions() {
+        return kindOfQuestions;
     }
 
-    public void setKindOfQuestion(String kindOfQuestion) {
-        this.kindOfQuestion = kindOfQuestion;
+    public void setKindOfQuestions(String kindOfQuestions) {
+        this.kindOfQuestions = kindOfQuestions;
     }
 
-    public List<Question> getQuestions() {
-        return questions;
+    public int getClassify() {
+        return classify;
     }
 
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
+    public void setClassify(int classify) {
+        this.classify = classify;
     }
 }

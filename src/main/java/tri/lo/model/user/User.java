@@ -24,16 +24,15 @@ public class User {
     private Long id;
 
     @NotBlank
-    @Size(max = 40)
+    @Size(min = 6, max = 40)
     private String name;
 
     @NotBlank
-    @Size(max = 15)
+    @Size(min = 6, max = 20)
     private String username;
 
     @NaturalId
     @NotBlank
-    @Size(max = 40)
     @Email
     private String email;
 

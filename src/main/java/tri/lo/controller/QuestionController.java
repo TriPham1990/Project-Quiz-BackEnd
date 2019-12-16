@@ -23,6 +23,7 @@ public class QuestionController {
     @GetMapping
     private ResponseEntity<List<Question>> listAllQuestion() {
         List<Question> questions = questionService.findAll();
+
         if (questions.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -55,7 +56,7 @@ public class QuestionController {
             currentQuestion.get().setId(question.getId());
             currentQuestion.get().setQuestion(question.getQuestion());
             currentQuestion.get().setAnswers(question.getAnswers());
-            currentQuestion.get().setKindOfQuestion(question.getKindOfQuestion());
+            currentQuestion.get().setCategory(question.getCategory());
 
             questionService.save(currentQuestion.get());
             return new ResponseEntity<>(currentQuestion.get(), HttpStatus.OK);
