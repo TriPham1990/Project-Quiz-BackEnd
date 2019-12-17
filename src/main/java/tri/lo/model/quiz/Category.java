@@ -15,7 +15,7 @@ public class Category {
     private Long id;
 
     @NotBlank
-    private String category;
+    private String name;
 
     @JsonBackReference
     @OneToMany(targetEntity = Question.class)
@@ -24,8 +24,8 @@ public class Category {
     public Category() {
     }
 
-    public Category(String category) {
-        this.category = category;
+    public Category(String name) {
+        this.name = name;
     }
 
     public Long getId() {
@@ -36,12 +36,12 @@ public class Category {
         this.id = id;
     }
 
-    public String getCategory() {
-        return category;
+    public String getName() {
+        return name;
     }
 
-    public void setCategory(String kindOfQuestion) {
-        this.category = kindOfQuestion;
+    public void setName(String kindOfQuestion) {
+        this.name = kindOfQuestion;
     }
 
     public List<Question> getQuestions() {

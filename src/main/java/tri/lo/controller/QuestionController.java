@@ -54,7 +54,7 @@ public class QuestionController {
         Optional<Question> currentQuestion = questionService.findById(id);
         if (currentQuestion.isPresent()) {
             currentQuestion.get().setId(question.getId());
-            currentQuestion.get().setQuestion(question.getQuestion());
+            currentQuestion.get().setName(question.getName());
             currentQuestion.get().setAnswers(question.getAnswers());
             currentQuestion.get().setCategory(question.getCategory());
 

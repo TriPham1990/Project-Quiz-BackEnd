@@ -1,12 +1,9 @@
 package tri.lo.model.quiz;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import java.util.List;
 
 @Entity
 @Table(name = "kindOfQuestions")
@@ -17,7 +14,7 @@ public class KindOfQuestion {
     private Long id;
 
     @NotBlank
-    private String kindOfQuestions;
+    private String name;
 
     @Min(1)
     @Max(2)
@@ -26,8 +23,8 @@ public class KindOfQuestion {
     public KindOfQuestion() {
     }
 
-    public KindOfQuestion(String kindOfQuestions, int classify) {
-        this.kindOfQuestions = kindOfQuestions;
+    public KindOfQuestion(String name, int classify) {
+        this.name = name;
         this.classify = classify;
     }
 
@@ -39,12 +36,12 @@ public class KindOfQuestion {
         this.id = id;
     }
 
-    public String getKindOfQuestions() {
-        return kindOfQuestions;
+    public String getName() {
+        return name;
     }
 
-    public void setKindOfQuestions(String kindOfQuestions) {
-        this.kindOfQuestions = kindOfQuestions;
+    public void setName(String kindOfQuestions) {
+        this.name = kindOfQuestions;
     }
 
     public int getClassify() {

@@ -1,6 +1,7 @@
 package tri.lo.model.quiz;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -12,7 +13,8 @@ public class Question {
     private Long id;
 
     @Lob
-    private String question;
+    @NotBlank
+    private String name;
 
     @OneToMany//(targetEntity = Answer.class, mappedBy = "question")
     @JoinColumn(name = "answers_id")
@@ -29,8 +31,8 @@ public class Question {
     public Question() {
     }
 
-    public Question(String question) {
-        this.question = question;
+    public Question(String name) {
+        this.name = name;
     }
 
     public Long getId() {
@@ -49,12 +51,12 @@ public class Question {
         this.category = category;
     }
 
-    public String getQuestion() {
-        return question;
+    public String getName() {
+        return name;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setName(String question) {
+        this.name = question;
     }
 
     public List<Answer> getAnswers() {

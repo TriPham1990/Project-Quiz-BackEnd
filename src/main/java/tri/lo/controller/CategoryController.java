@@ -61,7 +61,7 @@ public class CategoryController {
     private ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category category) {
         Optional<Category> currentCategory = categoryService.findById(id);
         if (currentCategory.isPresent()) {
-            currentCategory.get().setCategory(category.getCategory());
+            currentCategory.get().setName(category.getName());
             currentCategory.get().setId(category.getId());
             currentCategory.get().setQuestions(category.getQuestions());
 

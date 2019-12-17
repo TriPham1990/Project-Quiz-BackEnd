@@ -7,7 +7,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-import tri.lo.model.quiz.Question;
 import tri.lo.model.quiz.Quiz;
 import tri.lo.service.quiz.QuizService;
 
@@ -55,7 +54,7 @@ public class QuizController {
         Optional<Quiz> currentQuiz = quizService.findById(id);
         if (currentQuiz.isPresent()) {
             currentQuiz.get().setId(quiz.getId());
-            currentQuiz.get().setNameQuiz(quiz.getNameQuiz());
+            currentQuiz.get().setName(quiz.getName());
             currentQuiz.get().setQuestions(quiz.getQuestions());
 
             quizService.save(currentQuiz.get());

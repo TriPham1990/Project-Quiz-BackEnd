@@ -13,7 +13,7 @@ public class Quiz {
     private Long id;
 
     @NotBlank
-    private String nameQuiz;
+    private String name;
 
     @NotBlank
     private int questionCount;
@@ -25,8 +25,8 @@ public class Quiz {
     public Quiz() {
     }
 
-    public Quiz(String nameQuiz, int QuestionCount) {
-        this.nameQuiz = nameQuiz;
+    public Quiz(String name, int questionCount) {
+        this.name = name;
         this.questionCount = questionCount;
     }
 
@@ -38,12 +38,12 @@ public class Quiz {
         this.id = id;
     }
 
-    public String getNameQuiz() {
-        return nameQuiz;
+    public String getName() {
+        return name;
     }
 
-    public void setNameQuiz(String nameQuiz) {
-        this.nameQuiz = nameQuiz;
+    public void setName(String nameQuiz) {
+        this.name = nameQuiz;
     }
 
     public List<Question> getQuestions() {

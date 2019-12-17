@@ -17,7 +17,7 @@ public class Answer {
     private boolean correct;
 
     @NotBlank
-    private String answer;
+    private String name;
 
     @JsonBackReference
     @ManyToOne
@@ -27,9 +27,9 @@ public class Answer {
     public Answer() {
     }
 
-    public Answer(boolean correct, String answer) {
+    public Answer(boolean correct, String name) {
         this.correct = correct;
-        this.answer = answer;
+        this.name = name;
     }
 
     public Long getId() {
@@ -48,12 +48,12 @@ public class Answer {
         this.correct = correct;
     }
 
-    public String getAnswer() {
-        return answer;
+    public String getName() {
+        return name;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setName(String answer) {
+        this.name = answer;
     }
 
     public Question getQuestion() {
