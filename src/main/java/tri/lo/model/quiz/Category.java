@@ -1,10 +1,8 @@
 package tri.lo.model.quiz;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.List;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "categories")
@@ -15,11 +13,8 @@ public class Category {
     private Long id;
 
     @NotBlank
+    @Column(unique = true)
     private String name;
-
-    @JsonBackReference
-    @OneToMany(targetEntity = Question.class)
-    private List<Question> questions;
 
     public Category() {
     }
@@ -44,11 +39,4 @@ public class Category {
         this.name = kindOfQuestion;
     }
 
-    public List<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
-    }
 }

@@ -63,7 +63,6 @@ public class CategoryController {
         if (currentCategory.isPresent()) {
             currentCategory.get().setName(category.getName());
             currentCategory.get().setId(category.getId());
-            currentCategory.get().setQuestions(category.getQuestions());
 
             categoryService.save(currentCategory.get());
 
@@ -78,16 +77,6 @@ public class CategoryController {
     private ResponseEntity<Category> deleteCategory(@PathVariable Long id) {
 
         Optional<Category> category = categoryService.findById(id);
-
-        List<Question> questions = category.get().getQuestions();
-
-        for (int i = 0; i < questions.size(); i++) {
-            List<Answer> answers = questions.get(i).getAnswers();
-            for (int j = 0; j < answers.size(); j++) {
-                answerService.remove(answers.get(j).getId());
-            }
-            questionService.remove(questions.get(i).getId());
-        }
 
         if (category.isPresent()) {
             categoryService.remove(id);

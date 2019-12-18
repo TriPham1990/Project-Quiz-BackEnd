@@ -2,7 +2,7 @@ package tri.lo.model.quiz;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.List;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "questions")
@@ -12,27 +12,23 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Lob
     @NotBlank
-    private String name;
-
-    @OneToMany//(targetEntity = Answer.class, mappedBy = "question")
-    @JoinColumn(name = "answers_id")
-    private List<Answer> answers;
+    @Column(unique = true)
+    private String content;
 
     @ManyToOne
-    @JoinColumn(name = "kindOfQuestions_id")
-    private KindOfQuestion kindOfQuestions;
+    @JoinColumn(name = "kindOfQuestion_id")
+    private KindOfQuestion kindOfQuestion;
 
     @ManyToOne
-    @JoinColumn(name = "categories_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 
     public Question() {
     }
 
-    public Question(String name) {
-        this.name = name;
+    public Question(String content) {
+        this.content = content;
     }
 
     public Long getId() {
@@ -51,27 +47,19 @@ public class Question {
         this.category = category;
     }
 
-    public String getName() {
-        return name;
+    public String getContent() {
+        return content;
     }
 
-    public void setName(String question) {
-        this.name = question;
+    public void setContent(String question) {
+        this.content = question;
     }
 
-    public List<Answer> getAnswers() {
-        return answers;
+    public KindOfQuestion getKindOfQuestion() {
+        return kindOfQuestion;
     }
 
-    public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
-    }
-
-    public KindOfQuestion getKindOfQuestions() {
-        return kindOfQuestions;
-    }
-
-    public void setKindOfQuestions(KindOfQuestion kindOfQuestions) {
-        this.kindOfQuestions = kindOfQuestions;
+    public void setKindOfQuestion(KindOfQuestion kindOfQuestion) {
+        this.kindOfQuestion = kindOfQuestion;
     }
 }

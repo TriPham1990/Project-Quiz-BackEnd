@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "kindOfQuestions")
@@ -14,10 +15,10 @@ public class KindOfQuestion {
     private Long id;
 
     @NotBlank
+    @Column(unique = true)
     private String name;
 
-    @Min(1)
-    @Max(2)
+    @NotBlank
     private int classify;
 
     public KindOfQuestion() {

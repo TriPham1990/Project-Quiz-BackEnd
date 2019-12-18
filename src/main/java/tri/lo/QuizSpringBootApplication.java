@@ -5,14 +5,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import tri.lo.security.CustomUserDetailsService;
 import tri.lo.security.JwtAuthenticationEntryPoint;
-import tri.lo.service.quiz.AnswerService;
-import tri.lo.service.quiz.CategoryService;
-import tri.lo.service.quiz.QuestionService;
-import tri.lo.service.quiz.QuizService;
-import tri.lo.service.quiz.impl.AnswerServiceImpl;
-import tri.lo.service.quiz.impl.CategoryServiceImpl;
-import tri.lo.service.quiz.impl.QuestionServiceImpl;
-import tri.lo.service.quiz.impl.QuizServiceImpl;
+import tri.lo.service.quiz.*;
+import tri.lo.service.quiz.impl.*;
 
 @SpringBootApplication
 public class QuizSpringBootApplication {
@@ -38,6 +32,11 @@ public class QuizSpringBootApplication {
     @Bean
     public QuizService quizService() {
         return new QuizServiceImpl();
+    }
+
+    @Bean
+    public KindOfQuestionService kindOfQuestionService() {
+        return new KindOfQuestionServiceImpl();
     }
 
     @Bean

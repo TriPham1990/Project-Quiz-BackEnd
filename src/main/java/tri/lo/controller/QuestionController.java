@@ -32,11 +32,9 @@ public class QuestionController {
     }
 
     @PostMapping
-    private ResponseEntity<Void> createQuestion(@RequestBody Question question, UriComponentsBuilder ucBuilder) {
+    private ResponseEntity<?> createQuestion(@RequestBody Question question) {
         questionService.save(question);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/api/auth/questions/{id}").buildAndExpand(question.getId()).toUri());
-        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(question, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -54,8 +52,7 @@ public class QuestionController {
         Optional<Question> currentQuestion = questionService.findById(id);
         if (currentQuestion.isPresent()) {
             currentQuestion.get().setId(question.getId());
-            currentQuestion.get().setName(question.getName());
-            currentQuestion.get().setAnswers(question.getAnswers());
+            currentQuestion.get().setContent(question.getContent());
             currentQuestion.get().setCategory(question.getCategory());
 
             questionService.save(currentQuestion.get());

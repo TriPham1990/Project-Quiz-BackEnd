@@ -1,9 +1,8 @@
 package tri.lo.model.quiz;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "answers")
@@ -17,19 +16,19 @@ public class Answer {
     private boolean correct;
 
     @NotBlank
-    private String name;
+    @Column(unique = true)
+    private String content;
 
-    @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "questions")
+    @JoinColumn(name = "question_id")
     private Question question;
 
     public Answer() {
     }
 
-    public Answer(boolean correct, String name) {
+    public Answer(boolean correct, String content) {
         this.correct = correct;
-        this.name = name;
+        this.content = content;
     }
 
     public Long getId() {
@@ -48,12 +47,12 @@ public class Answer {
         this.correct = correct;
     }
 
-    public String getName() {
-        return name;
+    public String getContent() {
+        return content;
     }
 
-    public void setName(String answer) {
-        this.name = answer;
+    public void setContent(String answer) {
+        this.content = answer;
     }
 
     public Question getQuestion() {
