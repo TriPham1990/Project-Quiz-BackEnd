@@ -32,11 +32,9 @@ public class QuizController {
     }
 
     @PostMapping
-    private ResponseEntity<Void> createQuiz(@RequestBody Quiz quiz, UriComponentsBuilder ucBuilder) {
+    private ResponseEntity<?> createQuiz(@RequestBody Quiz quiz) {
         quizService.save(quiz);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/api/auth/questions/{id}").buildAndExpand(quiz.getId()).toUri());
-        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(quiz, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -55,7 +53,6 @@ public class QuizController {
         if (currentQuiz.isPresent()) {
             currentQuiz.get().setId(quiz.getId());
             currentQuiz.get().setName(quiz.getName());
-            currentQuiz.get().setQuestions(quiz.getQuestions());
 
             quizService.save(currentQuiz.get());
             return new ResponseEntity<>(currentQuiz.get(), HttpStatus.OK);

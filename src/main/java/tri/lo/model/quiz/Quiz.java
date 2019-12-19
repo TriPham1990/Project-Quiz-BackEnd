@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-@Table(name = "quiz")
+@Table(name = "quizzes")
 public class Quiz {
 
     @Id
@@ -19,10 +19,6 @@ public class Quiz {
 
     @NotBlank
     private int questionCount;
-
-    @OneToMany(targetEntity = Question.class)
-    @JoinColumn(name = "questions_id")
-    private List<Question> questions;
 
     public Quiz() {
     }
@@ -46,14 +42,6 @@ public class Quiz {
 
     public void setName(String nameQuiz) {
         this.name = nameQuiz;
-    }
-
-    public List<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
     }
 
     public int getQuestionCount() {

@@ -29,10 +29,8 @@ public class AnswerController {
     }
 
     @PostMapping
-    private ResponseEntity<Void> createAnswer(@RequestBody Answer answer, UriComponentsBuilder ucBuilder) {
+    private ResponseEntity<?> createAnswer(@RequestBody Answer answer) {
         answerService.save(answer);
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/api/auth/answers/{id}").buildAndExpand(answer.getId()).toUri());
-        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+        return new ResponseEntity<>(answer, HttpStatus.CREATED);
     }
 }

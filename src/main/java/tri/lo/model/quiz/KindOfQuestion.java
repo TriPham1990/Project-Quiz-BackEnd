@@ -18,15 +18,11 @@ public class KindOfQuestion {
     @Column(unique = true)
     private String name;
 
-    @NotBlank
-    private int classify;
-
     public KindOfQuestion() {
     }
 
-    public KindOfQuestion(String name, int classify) {
+    public KindOfQuestion(String name) {
         this.name = name;
-        this.classify = classify;
     }
 
     public Long getId() {
@@ -45,11 +41,4 @@ public class KindOfQuestion {
         this.name = kindOfQuestions;
     }
 
-    public int getClassify() {
-        return classify;
-    }
-
-    public void setClassify(int classify) {
-        this.classify = classify;
-    }
 }

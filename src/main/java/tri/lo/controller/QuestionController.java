@@ -7,7 +7,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import tri.lo.model.quiz.Category;
 import tri.lo.model.quiz.Question;
+import tri.lo.service.quiz.CategoryService;
 import tri.lo.service.quiz.QuestionService;
 
 import java.util.List;
@@ -20,10 +22,24 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     @GetMapping
     private ResponseEntity<List<Question>> listAllQuestion() {
+
         List<Question> questions = questionService.findAll();
 
+        if (questions.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+
+        return new ResponseEntity<>(questions, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/findByCategory/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    private ResponseEntity<List<Question>> getAllQuestionByCategoryId(@PathVariable Long id) {
+        List<Question> questions = questionService.findAllByCategoryId(id);
         if (questions.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -59,7 +75,7 @@ public class QuestionController {
             return new ResponseEntity<>(currentQuestion.get(), HttpStatus.OK);
         }
 
-        return new  ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/{id}")

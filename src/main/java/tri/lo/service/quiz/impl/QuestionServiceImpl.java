@@ -1,6 +1,7 @@
 package tri.lo.service.quiz.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import tri.lo.model.quiz.Category;
 import tri.lo.model.quiz.Question;
 import tri.lo.repository.quiz.QuestionRepository;
 import tri.lo.service.quiz.QuestionService;
@@ -12,6 +13,11 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
     private QuestionRepository questionRepository;
+
+    @Override
+    public List<Question> findAllByCategoryId(Long id) {
+        return questionRepository.findAllByCategoryId(id);
+    }
 
     @Override
     public List<Question> findAll() {
