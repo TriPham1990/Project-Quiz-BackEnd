@@ -16,7 +16,6 @@ public class Answer {
     private boolean correct;
 
     @NotBlank
-    @Column(unique = true)
     private String content;
 
     @ManyToOne

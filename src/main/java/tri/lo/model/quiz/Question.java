@@ -24,10 +24,6 @@ public class Question {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToOne
-    @JoinColumn(name = "quizzes_id")
-    private Quiz quiz;
-
     public Question() {
     }
 
@@ -67,11 +63,4 @@ public class Question {
         this.kindOfQuestion = kindOfQuestion;
     }
 
-    public Quiz getQuiz() {
-        return quiz;
-    }
-
-    public void setQuiz(Quiz quiz) {
-        this.quiz = quiz;
-    }
 }

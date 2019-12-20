@@ -53,6 +53,7 @@ public class QuizController {
         if (currentQuiz.isPresent()) {
             currentQuiz.get().setId(quiz.getId());
             currentQuiz.get().setName(quiz.getName());
+            currentQuiz.get().setQuestions(quiz.getQuestions());
 
             quizService.save(currentQuiz.get());
             return new ResponseEntity<>(currentQuiz.get(), HttpStatus.OK);
