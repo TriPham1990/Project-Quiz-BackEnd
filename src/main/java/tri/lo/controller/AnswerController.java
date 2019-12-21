@@ -10,6 +10,7 @@ import tri.lo.model.quiz.Answer;
 import tri.lo.service.quiz.AnswerService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/auth/answers")
@@ -32,5 +33,15 @@ public class AnswerController {
     private ResponseEntity<?> createAnswer(@RequestBody Answer answer) {
         answerService.save(answer);
         return new ResponseEntity<>(answer, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id")
+    private ResponseEntity<Answer> deleteAnswer(@PathVariable Long id) {
+        Optional<Answer> answer = answerService.findById(id);
+        if (answer.isPresent()) {
+            answerService.remove(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

@@ -14,6 +14,11 @@ public class AnswerServiceImpl implements AnswerService {
     private AnswerRepository answerRepository;
 
     @Override
+    public List<Answer> findAllByQuestionId(Long id) {
+        return answerRepository.findAllByQuestionId(id);
+    }
+
+    @Override
     public List<Answer> findAll() {
         return answerRepository.findAll();
     }

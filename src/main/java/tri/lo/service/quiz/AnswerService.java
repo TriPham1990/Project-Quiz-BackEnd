@@ -7,6 +7,8 @@ import java.util.Optional;
 
 public interface AnswerService {
 
+    List<Answer> findAllByQuestionId(Long id);
+
     List<Answer> findAll();
 
     Optional<Answer> findById(Long id);

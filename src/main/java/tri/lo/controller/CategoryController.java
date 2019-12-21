@@ -78,13 +78,16 @@ public class CategoryController {
 
         Optional<Category> category = categoryService.findById(id);
 
+
         if (category.isPresent()) {
+            List<Question> questions = questionService.findAllByCategoryId(id);
+            for (Question question: questions) {
+                question.setCategory(null);
+            }
             categoryService.remove(id);
             return new ResponseEntity<Category>(HttpStatus.OK);
         }
 
-
         return new ResponseEntity<Category>(HttpStatus.NOT_FOUND);
-
     }
 }

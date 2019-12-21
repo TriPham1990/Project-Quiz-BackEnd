@@ -7,8 +7,10 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
+import tri.lo.model.quiz.Answer;
 import tri.lo.model.quiz.Category;
 import tri.lo.model.quiz.Question;
+import tri.lo.service.quiz.AnswerService;
 import tri.lo.service.quiz.CategoryService;
 import tri.lo.service.quiz.QuestionService;
 
@@ -23,7 +25,7 @@ public class QuestionController {
     private QuestionService questionService;
 
     @Autowired
-    private CategoryService categoryService;
+    private AnswerService answerService;
 
     @GetMapping
     private ResponseEntity<List<Question>> listAllQuestion() {
@@ -82,6 +84,12 @@ public class QuestionController {
     private ResponseEntity<Question> deleteQuestion(@PathVariable Long id) {
         Optional<Question> question = questionService.findById(id);
         if (question.isPresent()) {
+            List<Answer> answers = answerService.findAllByQuestionId(id);
+            if (!answers.isEmpty()) {
+                for (Answer answer: answers) {
+                    answerService.remove(answer.getId());
+                }
+            }
             questionService.remove(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }
