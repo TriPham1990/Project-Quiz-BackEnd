@@ -1,14 +1,11 @@
 package tri.lo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 import tri.lo.model.quiz.Answer;
-import tri.lo.model.quiz.Question;
 import tri.lo.service.quiz.AnswerService;
 
 import java.util.List;
@@ -45,6 +42,16 @@ public class AnswerController {
         }
 
         return new ResponseEntity<>(answers, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    private ResponseEntity<Answer> getAnswerById(@PathVariable Long id) {
+        Optional<Answer> answer = answerService.findById(id);
+        if (answer.isPresent()) {
+            return new ResponseEntity<>(answer.get(), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/{id")
